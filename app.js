@@ -10,7 +10,23 @@ var server = http.createServer(function requestListener(httpRequest, httpRespons
   var cbName    = params.callback || params.cb || '';
   var argString = params.format || '{"width": %w, "height": %h}';
 
-  if (!imageURL) return httpResponse.end();
+  if (!imageURL) {
+    var usageHTML = [
+      '<!doctype HTML>',
+      '<html>',
+        '<body>',
+          '<script src="https://gist.github.com/3738879.js?file=remote_imageinfo_request.js"></script>',
+          '<script src="https://gist.github.com/3738879.js?file=remote_imageinfo_response.txt"></script>',
+          '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>',
+        '</body>',
+      '</html>'
+    ].join('');
+
+    httpResponse.writeHead(200, {'Content-Type': 'text/html'});
+    httpResponse.write(usageHTML);
+    httpResponse.end();
+   return;
+  }
 
   var args = ['-format', argString, imageURL];
   im.identify(args, function onImageMagickIdentify(err, responseString) {

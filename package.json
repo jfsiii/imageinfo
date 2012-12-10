@@ -1,8 +1,8 @@
 {
   "name": "imageinfo",
-  "version": "0.0.4",
+  "version": "0.2.0",
   "author": "JFSIII",
-  "description": "Pass an ImageMagik `-format` string, get the result back.",
+  "description": "Pass a URL and an ImageMagik `-format` string, get the result back.",
   "scripts": {
     "start": "node app.js"
   },
